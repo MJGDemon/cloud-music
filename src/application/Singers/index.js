@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Singers(props) {
+function Singers() {
   return (
     <div>Singers</div>
   )

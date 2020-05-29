@@ -6,9 +6,10 @@ import RecommendList from '../../components/recommendList/index'
 import Scroll from '../../baseUI/scroll/index'
 import { Content } from './style'
 import LazyLoad from '../../baseUI/lazyLoad'
+import Loading from '../../baseUI/loading/index'
 
 function Recommend(props) {
-  const { bannerList, recommendList } = props
+  const { bannerList, recommendList, enterLoading } = props
 
   const { getBannerDataDispatch, getRecommendListDataDispatch } = props
 
@@ -27,6 +28,7 @@ function Recommend(props) {
           </LazyLoad>
         </div>
       </Scroll>
+      { enterLoading ? <Loading></Loading> : null }
     </Content>
   )
 }
@@ -35,6 +37,7 @@ function Recommend(props) {
 const mapStateToProps = (state) => ({
   bannerList: state.getIn(['recommend', 'bannerList']),
   recommendList: state.getIn(['recommend', 'recommendList']),
+  enterLoading: state.getIn(['recommend', 'enterLoading']),
 })
 // 映射 dispatch 到 props 上
 const mapDispatchToProps = (dispatch) => ({

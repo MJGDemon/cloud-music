@@ -1,13 +1,13 @@
 import React from 'react'
-import {LoadingWrapper} from './style'
+import { LoadingWrapper } from './style'
 
-function Loading ()  {
+function Loading() {
   return (
     <LoadingWrapper>
       <div></div>
       <div></div>
     </LoadingWrapper>
-  );
+  )
 }
- 
-export default React.memo (Loading);
+
+export default React.memo(Loading)

@@ -22,18 +22,6 @@ function LazyLoad(props) {
         })
       }
     }
-    // console.log(imgs, ref.current)
-    // if(!ioRef.current){
-    //   const io = new IntersectionObserver((entires) => {
-    //     entires.forEach(e => {
-    //       if(e.isIntersecting){
-    //         e.target.src = e.target.dataset.src
-    //         io.unobserve(e.target)
-    //       }
-    //     })
-    //   })
-    //   io.observe(ref.current.children[0])
-    // }
   })
   useEffect(() => {
     flag.current = true
