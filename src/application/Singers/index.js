@@ -55,7 +55,7 @@ function Singers(props) {
   }
 
   const handlePullUpRefresh = () => {
-    pullUpRefreshDispatch(category, alpha, 0, pageCount + 1)
+    pullUpRefreshDispatch(category, alpha, category === '', pageCount)
   }
 
   const handlePullDownRefresh = () => {
