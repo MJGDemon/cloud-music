@@ -11,7 +11,6 @@ import { debounce } from '../../api/utils'
 
 const Scroll = forwardRef((props, ref) => {
   const [bScroll, setBScroll] = useState()
-  console.log(props.pullUpLoading)
   const scrollContaninerRef = useRef()
 
   const {
@@ -56,27 +55,27 @@ const Scroll = forwardRef((props, ref) => {
     if (!bScroll || !pullUp) return
     bScroll.on('scrollEnd', () => {
       // 判断是否滑动到了底部
-      if (bScroll.y <= bScroll.maxScrollY + 100) {
+      if (bScroll.y <= bScroll.maxScrollY + 100 && pullUpLoading === false) {
         pullUpDebounce()
       }
     })
     return () => {
       bScroll.off('scrollEnd')
     }
-  }, [pullUp, bScroll, pullUpDebounce])
+  }, [pullUp, bScroll, pullUpDebounce, pullUpLoading])
 
   useEffect(() => {
     if (!bScroll || !pullDown) return
     bScroll.on('touchEnd', (pos) => {
       // 判断用户的下拉动作
-      if (pos.y > 50) {
+      if (pos.y > 50 && pullDownLoading === false) {
         pullDownDebounce()
       }
     })
     return () => {
       bScroll.off('touchEnd')
     }
-  }, [pullDown, bScroll, pullDownDebounce])
+  }, [pullDown, bScroll, pullDownDebounce, pullDownLoading])
 
 
   useEffect(() => {

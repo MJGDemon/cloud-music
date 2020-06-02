@@ -9,6 +9,7 @@ const defaultState = {
   pullUploading: false,
   pullDownLoading: false,
   pageCount: 0,
+  hasMore: true,
 }
 
 const reducer = produce((draft = defaultState, action) => {
@@ -29,10 +30,13 @@ const reducer = produce((draft = defaultState, action) => {
       draft.pullDownLoading = action.data
       return draft
     case actionTypes.CHANGE_PULLUP_LOADING:
-      draft.pullUploading = action.data
+      draft.pullUpLoading = action.data
       return draft
     case actionTypes.CHANGE_ENTER_LOADING:
       draft.enterLoading = action.data
+      return draft
+    case actionTypes.CHANGE_HASMORE:
+      draft.hasMore = action.data
       return draft
     default:
       return draft

@@ -7,6 +7,7 @@ import SingerList from '../../components/singerList/index'
 import Scroll from '../../baseUI/scroll/index'
 import Loading from '../../baseUI/loading'
 import LazyLoad from '../../baseUI/lazyLoad'
+import Bottom from '../../baseUI/bottom'
 import {
   changeCategory,
   changeAlpha,
@@ -22,7 +23,7 @@ import {
 
 function Singers(props) {
   const {
-    category, alpha, pageCount, singerList, pullDownLoading, pullUpLoading, enterLoading,
+    category, alpha, singerList, pullDownLoading, pullUpLoading, enterLoading, hasMore,
   } = props
   const {
     updateCategoryDisPatch,
@@ -57,7 +58,7 @@ function Singers(props) {
   }
 
   const handlePullUpRefresh = () => {
-    pullUpRefreshDispatch(category, alpha, category === '', pageCount)
+    pullUpRefreshDispatch(category, alpha, category === '')
   }
 
   const handlePullDownRefresh = () => {
@@ -94,6 +95,7 @@ function Singers(props) {
         </Scroll>
         <Loading show={enterLoading}></Loading>
       </ListContainer>
+      <Bottom show={!hasMore}></Bottom>
     </NavContainer>
   )
 }
@@ -106,6 +108,7 @@ const mapStateToProps = (state) => ({
   pullUpLoading: state.getIn(['singers', 'pullUpLoading']),
   pullDownLoading: state.getIn(['singers', 'pullDownLoading']),
   pageCount: state.getIn(['singers', 'pageCount']),
+  hasMore: state.getIn(['singers', 'hasMore']),
 })
 const mapDispatchToProps = (dispatch) => ({
   updateCategoryDisPatch(category) {
@@ -123,9 +126,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(getSingerList(category, alpha))
   },
   // 滑到最底部刷新部分的处理
-  pullUpRefreshDispatch(category, alpha, hot, count) {
+  pullUpRefreshDispatch(category, alpha, hot) {
     dispatch(changePullUpLoading(true))
-    dispatch(changePageCount(count + 1))
+
     if (hot) {
       dispatch(refreshMoreHotSingerList())
     } else {
