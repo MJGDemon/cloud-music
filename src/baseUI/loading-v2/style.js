@@ -1,7 +1,8 @@
-import styled, {keyframes} from'styled-components';
+
+import styled, { keyframes } from 'styled-components'
 import style from '../../assets/global-style'
 
-export const dance = keyframes`
+const dance = keyframes`
     0%, 40%, 100%{
       transform: scaleY (0.4);
       transform-origin: center 100%;
@@ -18,7 +19,7 @@ export const Loading = styled.div`
     font-size: 10px;
     >div {
       display: inline-block;
-      background-color: ${style ["theme-color"]};
+      background-color: ${style['theme-color']};
       height: 100%;
       width: 1px;
       margin-right:2px;
@@ -36,3 +37,4 @@ export const Loading = styled.div`
     >div:nth-child (5) {
       animation-delay: -0.2s;
     } 
+`

@@ -5,6 +5,8 @@ import { categoryTypes, alphaTypes } from './config'
 import { NavContainer, ListContainer } from './style'
 import SingerList from '../../components/singerList/index'
 import Scroll from '../../baseUI/scroll/index'
+import Loading from '../../baseUI/loading'
+import LazyLoad from '../../baseUI/lazyLoad'
 import {
   changeCategory,
   changeAlpha,
@@ -33,7 +35,7 @@ function Singers(props) {
 
   useEffect(() => {
     getHotSingerDispatch()
-  }, [])
+  }, [getHotSingerDispatch])
   const handleUpdateAlpha = (val) => {
     if (alpha === val) {
       updateAlphaDisPatch('')
@@ -80,14 +82,17 @@ function Singers(props) {
       </Horizen>
       <ListContainer>
         <Scroll
-          pullDownLoadind={pullDownLoading}
+          pullDownLoading={pullDownLoading}
           pullUpLoading={pullUpLoading}
           enterLoading={enterLoading}
           pullUp={handlePullUpRefresh}
           pullDown={handlePullDownRefresh}
         >
-          <SingerList singerList={singerList}></SingerList>
+          <LazyLoad>
+            <SingerList singerList={singerList}></SingerList>
+          </LazyLoad>
         </Scroll>
+        <Loading show={enterLoading}></Loading>
       </ListContainer>
     </NavContainer>
   )

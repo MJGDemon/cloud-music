@@ -5,7 +5,7 @@ const defaultState = {
   alpha: '',
   category: '',
   singerList: [],
-  enterLoading: true,
+  enterLoading: false,
   pullUploading: false,
   pullDownLoading: false,
   pageCount: 0,

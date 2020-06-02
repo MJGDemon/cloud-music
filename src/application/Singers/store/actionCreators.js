@@ -48,6 +48,7 @@ export const changePullDownLoading = (data) => ({
 
 export const getHotSingerList = () => async (dispatch) => {
   try {
+    dispatch(changeEnterLoading(true))
     const result = await getHotSingerListRequest(0)
     dispatch(changeSingerList(result.artists))
     dispatch(changeEnterLoading(false))
@@ -61,7 +62,7 @@ export const refreshMoreHotSingerList = () => async (dispatch, getState) => {
   try {
     const pageCount = getState().getIn(['singers', 'pageCount'])
     const singerList = getState().getIn(['singers', 'singerList'])
-    const result = await getHotSingerListRequest(pageCount)
+    const result = await getHotSingerListRequest(pageCount * 50)
     dispatch(changeSingerList([...singerList, ...result.artists]))
     dispatch(changePullUpLoading(false))
   } catch {
@@ -84,7 +85,7 @@ export const refreshMoreSingerList = (category, alpha) => async (dispatch, getSt
   try {
     const pageCount = getState().getIn(['singers', 'pageCount'])
     const singerList = getState().getIn(['singers', 'singerList'])
-    const result = await getSingerListRequest(category, alpha, pageCount)
+    const result = await getSingerListRequest(category, alpha, pageCount * 30)
     dispatch(changeSingerList([...singerList, ...result.artists]))
     dispatch(changePullUpLoading(false))
   } catch {
