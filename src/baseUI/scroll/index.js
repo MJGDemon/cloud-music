@@ -17,7 +17,7 @@ const Scroll = forwardRef((props, ref) => {
     direction, click, refresh, bounceTop, bounceBottom,
   } = props
   const {
-    pullUp, pullDown, onScroll, pullUpLoading, pullDownLoading,
+    pullUp, pullDown, onScroll, pullUpLoading, pullDownLoading, hasMore,
   } = props
 
   const pullUpDebounce = useMemo(() => debounce(pullUp, 300), [pullUp])
@@ -55,14 +55,14 @@ const Scroll = forwardRef((props, ref) => {
     if (!bScroll || !pullUp) return
     bScroll.on('scrollEnd', () => {
       // 判断是否滑动到了底部
-      if (bScroll.y <= bScroll.maxScrollY + 100 && pullUpLoading === false) {
+      if (bScroll.y <= bScroll.maxScrollY + 100 && hasMore === true && pullUpLoading === false) {
         pullUpDebounce()
       }
     })
     return () => {
       bScroll.off('scrollEnd')
     }
-  }, [pullUp, bScroll, pullUpDebounce, pullUpLoading])
+  }, [pullUp, bScroll, pullUpDebounce, pullUpLoading, hasMore])
 
   useEffect(() => {
     if (!bScroll || !pullDown) return
@@ -113,6 +113,7 @@ const Scroll = forwardRef((props, ref) => {
 
 Scroll.defaultProps = {
   direction: 'vertical',
+  hasMore: true,
   click: true,
   refresh: true,
   onScroll: null,
@@ -126,6 +127,7 @@ Scroll.defaultProps = {
 
 Scroll.propTypes = {
   direction: PropTypes.oneOf(['vertical', 'horizental']),
+  hasMore: PropTypes.bool,
   click: PropTypes.bool,
   refresh: PropTypes.bool,
   onScroll: PropTypes.func,

@@ -19,7 +19,9 @@ export const ListItem = styled.div`
   margin: 0 5px;
   padding: 5px 0;
   align-items: center;
-  border-bottom: 1px solid ${style['border-color']};
+  :not(:last-child){
+    border-bottom: 1px solid ${style['border-color']};
+  }
   .img-wrapper {
     margin-right: 20px;
     img {

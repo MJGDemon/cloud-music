@@ -1,12 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { BottomWrap } from './style'
 
 function Bottom(props) {
   const { show } = props
-  console.log(show)
   const displayStyle = show ? { display: '' } : { display: 'none' }
   return (
-    <div>到底啦！</div>
+    <BottomWrap style={displayStyle}>
+      <div>到底啦！</div>
+    </BottomWrap>
   )
 }
 

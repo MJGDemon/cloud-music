@@ -4,10 +4,9 @@ function LazyLoad(props) {
   const { children } = props
 
   const ref = useRef(null)
-  const flag = useRef(null)
   useEffect(() => {
-    if (flag.current) {
-      const imgs = Array.from(ref.current.querySelectorAll('img'))
+    const imgs = Array.from(ref.current.querySelectorAll('img'))
+    if (Array.isArray(imgs) && imgs.length) {
       if (imgs.length > 0) {
         const io = new IntersectionObserver((entries) => {
           entries.forEach((e) => {
@@ -23,9 +22,7 @@ function LazyLoad(props) {
       }
     }
   })
-  useEffect(() => {
-    flag.current = true
-  })
+
   return (
     <div ref={ref}>
       {children}

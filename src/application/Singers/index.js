@@ -35,7 +35,9 @@ function Singers(props) {
   } = props
 
   useEffect(() => {
-    getHotSingerDispatch()
+    if (singerList.length === 0) {
+      getHotSingerDispatch()
+    }
   }, [getHotSingerDispatch])
   const handleUpdateAlpha = (val) => {
     if (alpha === val) {
@@ -88,14 +90,20 @@ function Singers(props) {
           enterLoading={enterLoading}
           pullUp={handlePullUpRefresh}
           pullDown={handlePullDownRefresh}
+          hasMore={hasMore}
         >
-          <LazyLoad>
-            <SingerList singerList={singerList}></SingerList>
-          </LazyLoad>
+          <div>
+            <LazyLoad>
+              <SingerList singerList={singerList}></SingerList>
+            </LazyLoad>
+            <Bottom show={!hasMore}></Bottom>
+            <Loading show={enterLoading}></Loading>
+          </div>
         </Scroll>
-        <Loading show={enterLoading}></Loading>
+
+
       </ListContainer>
-      <Bottom show={!hasMore}></Bottom>
+
     </NavContainer>
   )
 }
