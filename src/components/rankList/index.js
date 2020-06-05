@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { List, ListItem } from './style'
+import SongList from '../songList'
 
 function RankList(props) {
   const { list, global } = props
@@ -18,6 +19,7 @@ function RankList(props) {
               <div className="decorate"></div>
               <span className="update_frequecy">{item.updateFrequency}</span>
             </div>
+            <SongList list={item.tracks}></SongList>
           </ListItem>
         ))
       }
