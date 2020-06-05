@@ -11,10 +11,11 @@ const changeLoading = (data) => ({
   data,
 })
 
-export const getRankList = async (dispatch) => {
+export const getRankList = () => async (dispatch) => {
   try {
+    dispatch(changeLoading(true))
     const result = await getRankListRequest()
-    dispatch(changeRankList(result.data))
+    dispatch(changeRankList(result.list))
     dispatch(changeLoading(false))
   } catch {
     console.log('获取排行榜数据失败')

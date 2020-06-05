@@ -16,7 +16,7 @@ function Recommend(props) {
   useEffect(() => {
     getBannerDataDispatch()
     getRecommendListDataDispatch()
-  }, [getBannerDataDispatch, getRecommendListDataDispatch])
+  }, [])
 
   return (
     <Content className="list">
