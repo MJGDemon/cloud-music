@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
+import { renderRoutes } from 'react-router-config'
 import Slider from '../../components/slider'
 import * as actionTypes from './store/actionCreators'
 import RecommendList from '../../components/recommendList/index'
@@ -9,14 +10,16 @@ import LazyLoad from '../../baseUI/lazyLoad'
 import Loading from '../../baseUI/loading/index'
 
 function Recommend(props) {
-  const { bannerList, recommendList, enterLoading } = props
+  const {
+    bannerList, recommendList, enterLoading, route,
+  } = props
 
   const { getBannerDataDispatch, getRecommendListDataDispatch } = props
 
   useEffect(() => {
     getBannerDataDispatch()
     getRecommendListDataDispatch()
-  }, [])
+  }, [getBannerDataDispatch, getRecommendListDataDispatch])
 
   return (
     <Content className="list">
@@ -29,6 +32,7 @@ function Recommend(props) {
         </div>
       </Scroll>
       { enterLoading ? <Loading></Loading> : null }
+      {renderRoutes(route.routes) }
     </Content>
   )
 }

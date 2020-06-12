@@ -39,7 +39,7 @@ const Scroll = forwardRef((props, ref) => {
     return () => {
       setBScroll(null)
     }
-  }, [])
+  }, [bounceTop, bounceBottom, click, direction])
 
   useEffect(() => {
     if (!bScroll || !onScroll) return

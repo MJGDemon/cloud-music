@@ -5,7 +5,9 @@ import SongList from '../songList'
 
 function RankList(props) {
   const { list, global } = props
-
+  const enterDetail = () => {
+    // props.history.push(`/recommend/${name}`)
+  }
   return (
     <List globalRank={global}>
       {
@@ -13,9 +15,10 @@ function RankList(props) {
           <ListItem
             key={item.coverImgUrl}
             tracks={item.tracks}
+            onclick={enterDetail(item.name)}
           >
             <div className="img-wrapper">
-              <img src={item.coverImgUrl} />
+              <img src={item.coverImgUrl} alt="" />
               <div className="decorate"></div>
               <span className="update_frequecy">{item.updateFrequency}</span>
             </div>

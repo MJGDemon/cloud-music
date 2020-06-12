@@ -5,6 +5,7 @@ import { filterIndex } from '../../api/utils'
 import Scroll from '../../baseUI/scroll/index'
 import { Container } from './style'
 import RankList from '../../components/rankList/index'
+import Loading from '../../baseUI/loading'
 
 function Rank(props) {
   const { rankList, loading } = props
@@ -15,7 +16,7 @@ function Rank(props) {
   const displayStyle = loading ? { display: 'none' } : { display: '' }
   useEffect(() => {
     getRankListDispatch()
-  }, [])
+  }, [getRankListDispatch])
   return (
     <Container>
       <Scroll>
@@ -24,6 +25,7 @@ function Rank(props) {
           <RankList list={officialList}></RankList>
           <h1 className="global" style={displayStyle}>全球榜</h1>
           <RankList list={globalList} global={global}></RankList>
+          {loading ? <Loading></Loading> : null}
         </div>
       </Scroll>
     </Container>

@@ -38,7 +38,7 @@ function Singers(props) {
     if (singerList.length === 0) {
       getHotSingerDispatch()
     }
-  }, [getHotSingerDispatch])
+  }, [getHotSingerDispatch, singerList.length])
   const handleUpdateAlpha = (val) => {
     if (alpha === val) {
       updateAlphaDisPatch('')
