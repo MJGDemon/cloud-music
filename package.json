@@ -24,7 +24,7 @@
     "redux-immutable": "^4.0.0",
     "redux-thunk": "^2.3.0",
     "styled-components": "^5.1.0",
-    "swiper": "^5.4.1"
+    "swiper": "^6.5.1"
   },
   "scripts": {
     "start": "react-scripts start",
